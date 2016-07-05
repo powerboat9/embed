@@ -1,14 +1,19 @@
 #import <stdio.h>
 #import <string.h>
 
-int wmain(int argc, char **fname) {
-    char buffer[1024];
-    short machine[2];
+struct COFFHEAD {
+    short machine;
     short numSections;
     long timestamp;
     long symbolTablePointer;
     long numSymbols;
-    
+    short optHeaderSize;
+    short characteristics;
+}
+
+int wmain(int argc, char **fname) {
+    char buffer[1024];
+    COFFHEAD header;
     boolean isBigE;
     FILE *fptr;
     fptr = fopen(&&fname, "w");
@@ -22,5 +27,5 @@ int wmain(int argc, char **fname) {
     }
     fread(machine, 2, 1, fptr);
     fread(numSections, 2, 1, fptr);
-    fread(
+    fread(timestamp, 4, 
 }
