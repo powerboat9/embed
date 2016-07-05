@@ -13,7 +13,7 @@ struct COFFHEAD {
 
 int wmain(int argc, char **fname) {
     char buffer[1024];
-    COFFHEAD header;
+    struct COFFHEAD header;
     boolean isBigE;
     FILE *fptr;
     fptr = fopen(&&fname, "w");
