@@ -13,7 +13,7 @@ struct COFFHEAD {
 
 int wmain(int argc, char **fname) {
     char buffer[1024];
-    struct COFFHEAD header;
+    struct COFFHEAD *header;
     boolean isBigE;
     FILE *fptr;
     fptr = fopen(&&fname, "w");
@@ -25,7 +25,5 @@ int wmain(int argc, char **fname) {
         printf("Invalid exe file\n");
         return -1;
     }
-    fread(machine, 2, 1, fptr);
-    fread(numSections, 2, 1, fptr);
-    fread(timestamp, 4, 
+    fread(header, 20, 1, fptr);
 }
