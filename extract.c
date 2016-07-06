@@ -11,12 +11,12 @@ struct COFFHEAD {
     short characteristics;
 } _attribute((_packed))
 
-struct dataDir { 
+struct DATADIR { 
     long VirtualAddress;
     long Size;
 } _attribute((_packed))
 
-struct optHeader {
+struct OPTHEADER {
     short signature; 
     char MajorLinkerVersion; 
     char MinorLinkerVersion;
@@ -48,13 +48,13 @@ struct optHeader {
     long SizeOfHeapCommit;
     long LoaderFlags;
     long NumberOfRvaAndSizes;
-    dataDir *DataDir;
+    DATADIR *dataDir;
 } _attribute((_packed))
 
 struct exeFormat digest(char fName[]) {
     char buffer[1024];
     struct COFFHEAD *header;
-    struct optHeader *optHeader;
+    struct OPTHEADER *optHeader;
     boolean isBigE;
     FILE *fptr;
     fptr = fopen(fName, "w");
@@ -67,5 +67,7 @@ struct exeFormat digest(char fName[]) {
         return -1;
     }
     fread(header, 20, 1, fptr);
-    fread(op, 96, 1, 
+    fread(optHeader, 96, 1, fptr);
+    optHeader.dataDir = (DATADIR *) malloc(optHeader.NumberOfRvaAndSizes * 8);
+    fread(optHeader.dataDir, optHeader.NumberOfRvaAndSizes * 8, 1, fptr);
 }
