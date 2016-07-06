@@ -48,7 +48,7 @@ struct optHeader {
     long SizeOfHeapCommit;
     long LoaderFlags;
     long NumberOfRvaAndSizes;
-    dataDir DataDir[NumberOfRvaAndSize
+    dataDir *DataDir;
 }
 
 int wmain(int argc, char **fname) {
@@ -67,5 +67,5 @@ int wmain(int argc, char **fname) {
         return -1;
     }
     fread(header, 20, 1, fptr);
-    fread(optHeader, 
+    fread(optHeader, header->optHeaderSize, 
 }
