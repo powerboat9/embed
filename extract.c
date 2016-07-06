@@ -51,13 +51,13 @@ struct optHeader {
     dataDir *DataDir;
 }
 
-int wmain(int argc, char **fname) {
+struct exeFormat digest(char fName[]) {
     char buffer[1024];
     struct COFFHEAD *header;
     struct optHeader *optHeader;
     boolean isBigE;
     FILE *fptr;
-    fptr = fopen(&&fname, "w");
+    fptr = fopen(fName, "w");
     fseek(fptr, 0x3c, SEEK_SET);
     fread(buffer, 4, 1, fptr);
     if (memcmp(0x50450000, buffer, 4) == 0) {
@@ -67,5 +67,5 @@ int wmain(int argc, char **fname) {
         return -1;
     }
     fread(header, 20, 1, fptr);
-    fread(buffer, header->optHeaderSize, 1, 
+    fread(op, 96, 1, 
 }
