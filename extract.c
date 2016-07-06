@@ -56,16 +56,6 @@ struct EXEFORMAT {
     struct OTHERHEADER;
 } _attribute((_packed))
 
-struct LISTELEMENT {
-    char *k;
-    char *v;
-} _attribut ((_packed))
-
-struct LIST {
-    struct LISTELEMENT **elements;
-    int size;
-} _attribute((_packed))
-
 struct EXEFORMAT digest(char fName[]) {
     char buffer[1024];
     struct COFFHEAD *header;
@@ -96,34 +86,3 @@ struct LIST* createList(int size) {
         return (struct LIST *) NULL
     }
 }
-
-void appendList(struct LIST *list, char *k, char *v) {
-    if 
-
-char* getCPUType(struct EXEFORMAT exeFormat) {
-    0x14c	Intel 386
-    0x8664	x64
-    0x162	MIPS R3000
-    0x168	MIPS R10000
-    0x169	MIPS little endian WCI v2
-0x183	old Alpha AXP
-0x184	Alpha AXP
-0x1a2	Hitachi SH3
-0x1a3	Hitachi SH3 DSP
-0x1a6	Hitachi SH4
-0x1a8	Hitachi SH5
-0x1c0	ARM little endian
-0x1c2	Thumb
-0x1d3	Matsushita AM33
-0x1f0	PowerPC little endian
-0x1f1	PowerPC with floating point support
-0x200	Intel IA64
-0x266	MIPS16
-0x268	Motorola 68000 series
-0x284	Alpha AXP 64-bit
-0x366	MIPS with FPU
-0x466	MIPS16 with FPU
-0xebc	EFI Byte Code
-0x8664	AMD AMD64
-0x9041	Mitsubishi M32R little endian
-0xc0ee	clr pure MSIL
