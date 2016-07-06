@@ -11,9 +11,50 @@ struct COFFHEAD {
     short characteristics;
 }
 
+struct dataDir { 
+    long VirtualAddress;
+    long Size;
+}
+
+struct optHeader {
+    short signature; 
+    char MajorLinkerVersion; 
+    char MinorLinkerVersion;
+    long SizeOfCode;
+    long SizeOfInitializedData;
+    long SizeOfUninitializedData;
+    long AddressOfEntryPoint;
+    long BaseOfCode;
+    long BaseOfData;
+    //Only in exes
+    long ImageBase;
+    long SectionAlignment;
+    long FileAlignment;
+    short MajorOSVersion;
+    short MinorOSVersion;
+    short MajorImageVersion;
+    short MinorImageVersion;
+    short MajorSubsystemVersion;
+    short MinorSubsystemVersion;
+    long Win32VersionValue;
+    long SizeOfImage;
+    long SizeOfHeaders;
+    long Checksum;
+    short Subsystem;
+    short DLLCharacteristics;
+    long SizeOfStackReserve;
+    long SizeOfStackCommit;
+    long SizeOfHeapReserve;
+    long SizeOfHeapCommit;
+    long LoaderFlags;
+    long NumberOfRvaAndSizes;
+    dataDir DataDir[NumberOfRvaAndSize
+}
+
 int wmain(int argc, char **fname) {
     char buffer[1024];
     struct COFFHEAD *header;
+    struct optHeader *optHeader;
     boolean isBigE;
     FILE *fptr;
     fptr = fopen(&&fname, "w");
@@ -26,4 +67,5 @@ int wmain(int argc, char **fname) {
         return -1;
     }
     fread(header, 20, 1, fptr);
+    fread(optHeader, 
 }
