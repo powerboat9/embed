@@ -9,12 +9,12 @@ struct COFFHEAD {
     long numSymbols;
     short optHeaderSize;
     short characteristics;
-}
+} _attribute((_packed))
 
 struct dataDir { 
     long VirtualAddress;
     long Size;
-}
+} _attribute((_packed))
 
 struct optHeader {
     short signature; 
@@ -49,7 +49,7 @@ struct optHeader {
     long LoaderFlags;
     long NumberOfRvaAndSizes;
     dataDir *DataDir;
-}
+} _attribute((_packed))
 
 struct exeFormat digest(char fName[]) {
     char buffer[1024];
