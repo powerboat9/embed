@@ -67,5 +67,5 @@ int wmain(int argc, char **fname) {
         return -1;
     }
     fread(header, 20, 1, fptr);
-    fread(optHeader, header->optHeaderSize, 
+    fread(buffer, header->optHeaderSize, 1, 
 }
